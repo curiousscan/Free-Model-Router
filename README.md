@@ -27,7 +27,19 @@ echo "Summarize: ..." | python router.py --system "You are a terse assistant."
 
 # see the configured free-tier lineup
 python router.py --list-models
+
+# benchmark the free-tier answer against Claude, side by side
+export ANTHROPIC_API_KEY="sk-ant-..."
+python router.py "Explain recursion like I'm five" --claude-benchmark
 ```
+
+## Claude benchmark (optional)
+
+Free tiers are great — but how good are they, really? `--claude-benchmark`
+answers your prompt twice: once through the free-tier chain, once through
+Claude (Sonnet), printed side by side. Claude is the quality bar the free
+answers are judged against. Needs an Anthropic API key; still stdlib only,
+no SDK required. `--claude-model` overrides the default (`claude-sonnet-5-5`).
 
 ## How it works
 
